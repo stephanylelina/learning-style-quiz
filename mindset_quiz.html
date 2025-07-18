@@ -2,63 +2,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mindset Assessment Quiz</title>
   <style>
-    body { font-family: Century Gothic, sans-serif; padding: 40px; background-color: #f7f7f7; }
-    #quiz-container { max-width: 800px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .question { display: none; }
-    .question.active { display: block; }
-    h2 { color: #367484; }
-    label { display: block; margin: 10px 0; }
-    button { margin-top: 20px; padding: 10px 20px; background: #63f8ef; color: #000c48; border: none; border-radius: 5px; cursor: pointer; }
-    #result { margin-top: 40px; padding: 20px; background: #e8f6ff; border-left: 4px solid #3498db; display: none; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .quiz-container {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+      max-width: 600px;
+      width: 100%;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .question {
+      display: none;
+    }
+    .question.active {
+      display: block;
+    }
+    .answers label {
+      display: block;
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+    .btn {
+      background: #0077cc;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn:hover {
+      background: #005fa3;
+    }
+    .result {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <div id="quiz-container">
-    <h2>Mindset Assessment</h2>
-    <form id="quizForm">
-<div class="question active" id="q1"><p><strong>1. I believe that intelligence is largely inborn and cannot be changed very much.</strong></p><label><input type="radio" name="q1" value="0"> Strongly disagree</label><label><input type="radio" name="q1" value="1"> Disagree</label><label><input type="radio" name="q1" value="2"> Agree</label><label><input type="radio" name="q1" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(1)">Next</button></div><div class="question" id="q2"><p><strong>2. I believe that no matter what kind of person you are, it is always possible to make major changes for the better.</strong></p><label><input type="radio" name="q2" value="3"> Strongly disagree</label><label><input type="radio" name="q2" value="2"> Disagree</label><label><input type="radio" name="q2" value="1"> Agree</label><label><input type="radio" name="q2" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(2)">Next</button></div><div class="question" id="q3"><p><strong>3. I believe it’s possible to substantially increase how intelligent you are.</strong></p><label><input type="radio" name="q3" value="3"> Strongly disagree</label><label><input type="radio" name="q3" value="2"> Disagree</label><label><input type="radio" name="q3" value="1"> Agree</label><label><input type="radio" name="q3" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(3)">Next</button></div><div class="question" id="q4"><p><strong>4. I don’t think people can change who they truly are at their core.</strong></p><label><input type="radio" name="q4" value="0"> Strongly disagree</label><label><input type="radio" name="q4" value="1"> Disagree</label><label><input type="radio" name="q4" value="2"> Agree</label><label><input type="radio" name="q4" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(4)">Next</button></div><div class="question" id="q5"><p><strong>5. It is always possible to change the basic things about the kind of person you are.</strong></p><label><input type="radio" name="q5" value="3"> Strongly disagree</label><label><input type="radio" name="q5" value="2"> Disagree</label><label><input type="radio" name="q5" value="1"> Agree</label><label><input type="radio" name="q5" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(5)">Next</button></div><div class="question" id="q6"><p><strong>6. I think musical ability is something that anyone can learn.</strong></p><label><input type="radio" name="q6" value="3"> Strongly disagree</label><label><input type="radio" name="q6" value="2"> Disagree</label><label><input type="radio" name="q6" value="1"> Agree</label><label><input type="radio" name="q6" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(6)">Next</button></div><div class="question" id="q7"><p><strong>7. Talent is something you are born with, not something you can develop.</strong></p><label><input type="radio" name="q7" value="0"> Strongly disagree</label><label><input type="radio" name="q7" value="1"> Disagree</label><label><input type="radio" name="q7" value="2"> Agree</label><label><input type="radio" name="q7" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(7)">Next</button></div><div class="question" id="q8"><p><strong>8. I believe math is much easier to learn if you are male or come from a culture that values math.</strong></p><label><input type="radio" name="q8" value="0"> Strongly disagree</label><label><input type="radio" name="q8" value="1"> Disagree</label><label><input type="radio" name="q8" value="2"> Agree</label><label><input type="radio" name="q8" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(8)">Next</button></div><div class="question" id="q9"><p><strong>9. If I stay focused, work harder and smarter, I can become the best at a particular skill regardless of natural ability.</strong></p><label><input type="radio" name="q9" value="3"> Strongly disagree</label><label><input type="radio" name="q9" value="2"> Disagree</label><label><input type="radio" name="q9" value="1"> Agree</label><label><input type="radio" name="q9" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(9)">Next</button></div><div class="question" id="q10"><p><strong>10. No matter what kind of person you are, you can always change substantially.</strong></p><label><input type="radio" name="q10" value="3"> Strongly disagree</label><label><input type="radio" name="q10" value="2"> Disagree</label><label><input type="radio" name="q10" value="1"> Agree</label><label><input type="radio" name="q10" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(10)">Next</button></div><div class="question" id="q11"><p><strong>11. Trying new things is stressful for me, so I try to avoid it.</strong></p><label><input type="radio" name="q11" value="0"> Strongly disagree</label><label><input type="radio" name="q11" value="1"> Disagree</label><label><input type="radio" name="q11" value="2"> Agree</label><label><input type="radio" name="q11" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(11)">Next</button></div><div class="question" id="q12"><p><strong>12. Some people are good and kind, some aren’t. They rarely change.</strong></p><label><input type="radio" name="q12" value="0"> Strongly disagree</label><label><input type="radio" name="q12" value="1"> Disagree</label><label><input type="radio" name="q12" value="2"> Agree</label><label><input type="radio" name="q12" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(12)">Next</button></div><div class="question" id="q13"><p><strong>13. I value it when others give me feedback, even if negative.</strong></p><label><input type="radio" name="q13" value="3"> Strongly disagree</label><label><input type="radio" name="q13" value="2"> Disagree</label><label><input type="radio" name="q13" value="1"> Agree</label><label><input type="radio" name="q13" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(13)">Next</button></div><div class="question" id="q14"><p><strong>14. I dislike criticism because I have high standards.</strong></p><label><input type="radio" name="q14" value="0"> Strongly disagree</label><label><input type="radio" name="q14" value="1"> Disagree</label><label><input type="radio" name="q14" value="2"> Agree</label><label><input type="radio" name="q14" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(14)">Next</button></div><div class="question" id="q15"><p><strong>15. All human beings are capable of the same amount of learning.</strong></p><label><input type="radio" name="q15" value="3"> Strongly disagree</label><label><input type="radio" name="q15" value="2"> Disagree</label><label><input type="radio" name="q15" value="1"> Agree</label><label><input type="radio" name="q15" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(15)">Next</button></div><div class="question" id="q16"><p><strong>16. You can learn new things, but it won’t change intelligence.</strong></p><label><input type="radio" name="q16" value="0"> Strongly disagree</label><label><input type="radio" name="q16" value="1"> Disagree</label><label><input type="radio" name="q16" value="2"> Agree</label><label><input type="radio" name="q16" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(16)">Next</button></div><div class="question" id="q17"><p><strong>17. You can choose to act differently, but talents can't be changed.</strong></p><label><input type="radio" name="q17" value="0"> Strongly disagree</label><label><input type="radio" name="q17" value="1"> Disagree</label><label><input type="radio" name="q17" value="2"> Agree</label><label><input type="radio" name="q17" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(17)">Next</button></div><div class="question" id="q18"><p><strong>18. People are fundamentally good, but sometimes make bad choices.</strong></p><label><input type="radio" name="q18" value="3"> Strongly disagree</label><label><input type="radio" name="q18" value="2"> Disagree</label><label><input type="radio" name="q18" value="1"> Agree</label><label><input type="radio" name="q18" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(18)">Next</button></div><div class="question" id="q19"><p><strong>19. I study because I like learning and gaining skills.</strong></p><label><input type="radio" name="q19" value="3"> Strongly disagree</label><label><input type="radio" name="q19" value="2"> Disagree</label><label><input type="radio" name="q19" value="1"> Agree</label><label><input type="radio" name="q19" value="0"> Strongly agree</label><button type="button" onclick="nextQuestion(19)">Next</button></div><div class="question" id="q20"><p><strong>20. Some people are born smart and don’t need to work hard.</strong></p><label><input type="radio" name="q20" value="0"> Strongly disagree</label><label><input type="radio" name="q20" value="1"> Disagree</label><label><input type="radio" name="q20" value="2"> Agree</label><label><input type="radio" name="q20" value="3"> Strongly agree</label><button type="button" onclick="nextQuestion(20)">Next</button></div>
-    </form>
-    <div id="result"></div>
+  <div class="quiz-container">
+    <h1>Mindset Assessment</h1>
+    <form id="quiz-form"></form>
+    <div class="result" id="result" style="display:none;"></div>
   </div>
+
   <script>
-    function nextQuestion(current) {
-      const selected = document.querySelector('input[name="q' + current + '"]:checked');
-      if (!selected) {
-        alert("Please select an answer.");
-        return;
-      }
-      document.getElementById("q" + current).classList.remove("active");
-      const next = document.getElementById("q" + (current + 1));
-      if (next) {
-        next.classList.add("active");
-      } else {
-        showResults();
-      }
+    const questions = [
+      { q: "I believe that intelligence is largely inborn and cannot be changed very much.", key: 1, type: "fixed" },
+      { q: "No matter what kind of person you are, it's always possible to make major changes for the better.", key: 2, type: "growth" },
+      { q: "I believe it's possible to substantially increase how intelligent you are.", key: 3, type: "growth" },
+      { q: "I don't think people can change who they truly are at their core.", key: 4, type: "fixed" },
+      { q: "It is always possible to change the basic things about the kind of person you are.", key: 5, type: "growth" },
+      { q: "I think musical ability is something anyone can learn.", key: 6, type: "growth" },
+      { q: "Talent is something you are born with, not something you can develop.", key: 7, type: "fixed" },
+      { q: "I believe math is much easier to learn if you are male or come from a culture that values math.", key: 8, type: "fixed" },
+      { q: "If I stay focused, work hard and smart, I can become the best at a skill regardless of natural ability.", key: 9, type: "growth" },
+      { q: "No matter what kind of person you are, you can always change substantially.", key: 10, type: "growth" },
+      { q: "Trying new things is stressful for me, so I avoid it.", key: 11, type: "fixed" },
+      { q: "Some people are good and kind, some aren’t. They rarely change.", key: 12, type: "fixed" },
+      { q: "I value it when coaches or coworkers give me feedback, even if it's negative.", key: 13, type: "growth" },
+      { q: "Because I have high standards, I dislike criticism about my performance.", key: 14, type: "fixed" },
+      { q: "All people (without injuries or defects) are capable of the same amount of learning.", key: 15, type: "growth" },
+      { q: "You can learn new things, but it won’t change how intelligent you are.", key: 16, type: "fixed" },
+      { q: "The really important parts of who you are—your talents and skills—can’t be changed.", key: 17, type: "fixed" },
+      { q: "People are fundamentally good but sometimes make terrible choices.", key: 18, type: "growth" },
+      { q: "I study because I enjoy learning and gaining skills.", key: 19, type: "growth" },
+      { q: "Some people are born smart and don’t need to work hard.", key: 20, type: "fixed" }
+    ];
+
+    const answerOptions = [
+      { text: "Strongly disagree", value: 3 },
+      { text: "Disagree", value: 2 },
+      { text: "Agree", value: 1 },
+      { text: "Strongly agree", value: 0 }
+    ];
+
+    const form = document.getElementById("quiz-form");
+    let current = 0;
+    let score = 0;
+
+    function renderQuestion() {
+      form.innerHTML = "";
+      const q = questions[current];
+      const qDiv = document.createElement("div");
+      qDiv.className = "question active";
+      qDiv.innerHTML = `<h2>Question ${current + 1}</h2><p>${q.q}</p>`;
+
+      const ansDiv = document.createElement("div");
+      ansDiv.className = "answers";
+
+      answerOptions.forEach((opt, i) => {
+        const scoreValue = q.type === "growth" ? opt.value : 3 - opt.value;
+        ansDiv.innerHTML += `
+          <label>
+            <input type="radio" name="q${q.key}" value="${scoreValue}" />
+            ${opt.text}
+          </label>`;
+      });
+
+      qDiv.appendChild(ansDiv);
+
+      const nextBtn = document.createElement("button");
+      nextBtn.type = "button";
+      nextBtn.className = "btn";
+      nextBtn.textContent = current < questions.length - 1 ? "Next" : "See Result";
+      nextBtn.onclick = () => {
+        const selected = form.querySelector("input[name='q" + q.key + "']:checked");
+        if (!selected) {
+          alert("Please select an answer before proceeding.");
+          return;
+        }
+        score += parseInt(selected.value);
+        current++;
+        if (current < questions.length) {
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      };
+
+      qDiv.appendChild(nextBtn);
+      form.appendChild(qDiv);
     }
 
-    function showResults() {
-      let totalScore = 0;
-      for (let i = 1; i <= 20; i++) {
-        const answer = document.querySelector('input[name="q' + i + '"]:checked');
-        if (answer) {
-          totalScore += parseInt(answer.value);
-        }
-      }
-      let message = "";
-      if (totalScore >= 45) {
-        message = "You show a strong Growth Mindset. You're likely open to learning and adapting.";
-      } else if (totalScore >= 30) {
-        message = "You have a Mixed Mindset. You see growth as possible, but some fixed views may still affect you.";
+    function showResult() {
+      form.style.display = "none";
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "block";
+
+      let resultText = "";
+      if (score >= 45) {
+        resultText = `<h2>🌱 Growth Mindset</h2><p>You believe in learning, effort, and change. Keep growing!</p>`;
+      } else if (score >= 30) {
+        resultText = `<h2>🔄 Mixed Mindset</h2><p>You show growth potential, but may hold some limiting beliefs. Reflect and build confidence in your ability to grow.</p>`;
       } else {
-        message = "You tend toward a Fixed Mindset. Consider reframing setbacks and feedback as opportunities.";
+        resultText = `<h2>🔒 Fixed Mindset</h2><p>You may believe abilities are static. With awareness, you can shift toward a more empowering mindset.</p>`;
       }
-      const resultBox = document.getElementById("result");
-      resultBox.innerHTML = "<h3>Your Mindset Score: " + totalScore + "</h3><p>" + message + "</p>";
-      resultBox.style.display = "block";
+
+      resultDiv.innerHTML = `<h1>Your Result</h1><p><strong>Score:</strong> ${score}/60</p>${resultText}`;
     }
+
+    renderQuestion();
   </script>
 </body>
 </html>
